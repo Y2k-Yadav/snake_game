@@ -20,6 +20,7 @@ screen.onkey(snake.left, "Left")
 screen.onkey(snake.right, "Right")
 game_is_on = True
 # move snake
+new = 0
 while game_is_on:
 
     screen.update()
@@ -32,10 +33,8 @@ while game_is_on:
     if snake.head.xcor() > 295 or snake.head.xcor() <- 295 or snake.head.ycor() > 295 or snake.head.ycor()<- 295:
         game_is_on = False
         scoreboard.game_over()
-    for segment in snake.segments:
-        if segment == snake.head:
-            pass
-        elif snake.head.distance(segment) < 10:
+    for segment in snake.segments[1:]:
+        if snake.head.distance(segment) < 10:
             game_is_on = False
             scoreboard.game_over()
 
