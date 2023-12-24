@@ -20,7 +20,6 @@ screen.onkey(snake.left, "Left")
 screen.onkey(snake.right, "Right")
 game_is_on = True
 # move snake
-new = 0
 while game_is_on:
 
     screen.update()
@@ -28,6 +27,16 @@ while game_is_on:
     snake.move_snake()
     if snake.head.distance(food) < 20:
         food.refresh()
+        snake.extend_new_tail()
         scoreboard.increase_score()
-screen.exitonclick()
+    if snake.head.xcor() > 295 or snake.head.xcor() <- 295 or snake.head.ycor() > 295 or snake.head.ycor()<- 295:
+        game_is_on = False
+        scoreboard.game_over()
+    for segment in snake.segments:
+        if segment == snake.head:
+            pass
+        elif snake.head.distance(segment) < 10:
+            game_is_on = False
+            scoreboard.game_over()
 
+screen.exitonclick()
